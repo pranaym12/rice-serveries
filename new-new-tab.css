@@ -5,6 +5,7 @@ html{
 body{
     width:98%;
     padding-top: 15px;
+    height: 100%;
     background-color: #fcfcfc;
     background-image: url("Images/rice-image-1.jpg");
     background-position: center center;
@@ -23,6 +24,8 @@ h1{
     background-blend-mode: soft-light;
     /*opacity: .3;*/
     box-shadow: 5px 5px rgba(0,0,0,0.1) ;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .servery-info {
