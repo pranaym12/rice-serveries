@@ -40,6 +40,7 @@ h1{
 .servery-choices{
     background-color: rgba(102,51,153)
 }
+<<<<<<< HEAD
 .btn-group radio {
     grid-column: 1;
     background-color: #4CAF50; /* Green background */
@@ -58,6 +59,10 @@ h1{
 /* Add a background color on hover */
 .btn-group radio:hover {
     background-color: #3e8e41;
+=======
+.buttons{
+    grid-column: 1;
+>>>>>>> parent of bcc9a71... Change buttono names to reflect serveries.
 }
 .food-and-headings{
     grid-column: 2;
