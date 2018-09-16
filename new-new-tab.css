@@ -34,17 +34,31 @@ h1{
     min-width: 300px;
     width: 30vw;
     position: center;
-    
+    display: grid;
+
+}
+.servery-choices{
+    background-color: rgba(102,51,153)
+}
+.buttons{
+    grid-column: 1;
+}
+.food-and-headings{
+    grid-column: 2;
+}
+.servery-buttons{
+    background: green;
 }
 
 .servery-info-head{
     opacity: 1;
     color: black;
     text-align: center;
+    font-size: 50px;
 }
 
 p{
     font-size: 30px;
-    color: blue
+    color: blue;
 }
 
