@@ -1,13 +1,54 @@
-function readTextFile(file) {
-    var rawFile = new XMLHttpRequest();
-    rawFile.open("GET", file, false);
-    rawFile.onreadystatechange = function () {
-        if (rawFile.readyState === 4) {
-            if (rawFile.status === 200 || rawFile.status == 0) {
-                var allText = rawFile.responseText;
-                alert(allText);
-            }
-        }
+$(function(){
+    initialServeryUpdate();
+    //$('#servery-name').text(localStorage['servery-key']);
+    $('#baker').click(function(){
+        //bakerUpdate();
+        serveryUpdate("Baker");
+    });
+    $('#north').click(function(){
+        //northUpdate();
+        serveryUpdate("North");
+    });
+    $('#seibel').click(function(){
+        //seibelUpdate();
+        serveryUpdate("Seibel");
+    });
+    $('#sid').click(function(){
+        //sidUpdate();
+        serveryUpdate("Sid Rich");
+    });
+    $('#south').click(function(){
+        //southUpdate();
+        serveryUpdate("South");
+    });
+    $('#west').click(function(){
+        //westUpdate();
+        serveryUpdate("West");
+    });
+});
+function initialServeryUpdate(){
+    if (localStorage['servery-key']){
+        serveryUpdate(localStorage['servery-key']);
     }
-    rawFile.send(null);
+    else{
+        serveryUpdate("Seibel");
+    }
 }
+function serveryUpdate(servName){
+    $('#servery-name').text(servName);
+    localStorage['servery-key'] = servName;
+};
+function bakerUpdate(){
+    $('#servery-name').text("Baker");
+    localStorage['servery-key'] = "Baker";
+};function northUpdate(){
+    $('#servery-name').text("North");
+};function seibelUpdate(){
+    $('#servery-name').text("Seibel");
+};function sidUpdate(){
+    $('#servery-name').text("Sid Rich");
+};function southUpdate(){
+    $('#servery-name').text("South");
+};function westUpdate(){
+    $('#servery-name').text("West");
+};

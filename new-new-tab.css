@@ -3,13 +3,14 @@ html{
 }
 
 body{
-    width:98%;
-    padding-top: 15px;
+    width:98%;  
+    height:100%;
+    padding-top: 0px;
     background-color: #fcfcfc;
-    background-image: url("Images/rice-image-1.jpg");
     background-position: center center;
-    background-size: 180vh;
-    
+    background-size: 300vh;
+    background-image: url("Images/rice-image-1.jpg");
+
 }
 
 h1{
@@ -23,27 +24,58 @@ h1{
     background-blend-mode: soft-light;
     /*opacity: .3;*/
     box-shadow: 5px 5px rgba(0,0,0,0.1) ;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .servery-info {
     /*display: block;*/
     height: 65vh;
-    min-width: 300px;
-    width: 30vw;
+    min-width: 30vh;
+    width: 45vw;
     position: center;
-    
+    display: grid;
+
+}
+.servery-choices{
+    background-color: rgba(102,51,153)
+}
+.btn-group button {
+    height: 10.83vh;
+    grid-column: 1;
+    background-color: #4CAF50; /* Green background */
+    border: 1px solid green; /* Green border */
+    color: white; /* White text */
+    padding: 10px 24px; /* Some padding */
+    cursor: pointer; /* Pointer/hand icon */
+    width: 100%; /* Set a width if needed */
+    display: block; /* Make the buttons appear below each other */
+}
+
+.btn-group button:not(:last-child) {
+    border-bottom: none; /* Prevent double borders */
+}
+
+/* Add a background color on hover */
+.btn-group button:hover {
+    background-color: #3e8e41;
+}
+.food-and-headings{
+    grid-column: 2;
+}
+.servery-buttons{
+    background: green;
 }
 
 .servery-info-head{
     opacity: 1;
     color: black;
     text-align: center;
+    font-size: 50px;
 }
 
 p{
     font-size: 30px;
-    color: blue
+    color: blue;
 }
-slide-show-image{
-    position:
-}
+
