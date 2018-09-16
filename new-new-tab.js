@@ -1,4 +1,3 @@
-
 $(function(){
     initialServeryUpdate();
     //$('#servery-name').text(localStorage['servery-key']);
