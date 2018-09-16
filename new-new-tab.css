@@ -31,8 +31,8 @@ h1{
 .servery-info {
     /*display: block;*/
     height: 65vh;
-    min-width: 300px;
-    width: 30vw;
+    min-width: 30vh;
+    width: 45vw;
     position: center;
     display: grid;
 
@@ -41,6 +41,7 @@ h1{
     background-color: rgba(102,51,153)
 }
 .btn-group button {
+    height: 10.83vh;
     grid-column: 1;
     background-color: #4CAF50; /* Green background */
     border: 1px solid green; /* Green border */
