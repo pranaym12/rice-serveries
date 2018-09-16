@@ -37,6 +37,11 @@ function initialServeryUpdate(){
 function serveryUpdate(servName){
     $('#servery-name').text(servName);
     localStorage['servery-key'] = servName;
+    updateTime();
+};
+function updateTime(){
+    var d = new Date();
+    console.log(d.getHours());
 };
 
 /*function bakerUpdate(){
