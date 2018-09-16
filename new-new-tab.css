@@ -3,14 +3,14 @@ html{
 }
 
 body{
-    width:98%;
-    padding-top: 15px;
-    height: 100%;
+    width:98%;  
+    height:100%;
+    padding-top: 0px;
     background-color: #fcfcfc;
-    background-image: url("Images/rice-image-1.jpg");
     background-position: center center;
-    background-size: 180vh;
-    
+    background-size: 300vh;
+    background-image: url("Images/rice-image-1.jpg");
+
 }
 
 h1{
