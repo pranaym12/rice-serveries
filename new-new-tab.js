@@ -1,6 +1,7 @@
 
 $(function(){
-    $('#servery-name').text(localStorage['servery-key']);
+    initialServeryUpdate();
+    //$('#servery-name').text(localStorage['servery-key']);
     $('#baker').click(function(){
         //bakerUpdate();
         serveryUpdate("Baker");
@@ -26,7 +27,14 @@ $(function(){
         serveryUpdate("West");
     });
 });
-
+function initialServeryUpdate(){
+    if (localStorage['servery-key']){
+        serveryUpdate(localStorage['servery-key']);
+    }
+    else{
+        serveryUpdate("Seibel");
+    }
+}
 function serveryUpdate(servName){
     $('#servery-name').text(servName);
     localStorage['servery-key'] = servName;
