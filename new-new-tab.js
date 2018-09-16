@@ -1,27 +1,39 @@
 
 $(function(){
+    $('#servery-name').text(localStorage['servery-key']);
     $('#baker').click(function(){
-        bakerUpdate();
+        //bakerUpdate();
+        serveryUpdate("Baker");
     });
     $('#north').click(function(){
-        northUpdate();
+        //northUpdate();
+        serveryUpdate("North");
     });
     $('#seibel').click(function(){
-        seibelUpdate();
+        //seibelUpdate();
+        serveryUpdate("Seibel");
     });
     $('#sid').click(function(){
-        sidUpdate();
+        //sidUpdate();
+        serveryUpdate("Sid Rich");
     });
     $('#south').click(function(){
-        southUpdate();
+        //southUpdate();
+        serveryUpdate("South");
     });
     $('#west').click(function(){
-        westUpdate();
+        //westUpdate();
+        serveryUpdate("West");
     });
 });
 
+function serveryUpdate(servName){
+    $('#servery-name').text(servName);
+    localStorage['servery-key'] = servName;
+};
 function bakerUpdate(){
     $('#servery-name').text("Baker");
+    localStorage['servery-key'] = "Baker";
 };function northUpdate(){
     $('#servery-name').text("North");
 };function seibelUpdate(){
