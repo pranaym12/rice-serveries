@@ -38,7 +38,8 @@ function serveryUpdate(servName){
     $('#servery-name').text(servName);
     localStorage['servery-key'] = servName;
 };
-function bakerUpdate(){
+
+/*function bakerUpdate(){
     $('#servery-name').text("Baker");
     localStorage['servery-key'] = "Baker";
 };function northUpdate(){
@@ -51,4 +52,4 @@ function bakerUpdate(){
     $('#servery-name').text("South");
 };function westUpdate(){
     $('#servery-name').text("West");
-};
+};*/

@@ -4,7 +4,7 @@
     "description": "Build an Extension for Chrome!",
     "manifest_version": 2,
     "chrome_url_overrides": {
-        "newtab":"./main/new-new-tab.html"
+        "newtab":"new-new-tab.html"
     }
     
 }
