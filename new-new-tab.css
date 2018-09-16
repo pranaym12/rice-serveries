@@ -40,7 +40,7 @@ h1{
 .servery-choices{
     background-color: rgba(102,51,153)
 }
-.btn-group button {
+.btn-group radio {
     grid-column: 1;
     background-color: #4CAF50; /* Green background */
     border: 1px solid green; /* Green border */
@@ -51,12 +51,12 @@ h1{
     display: block; /* Make the buttons appear below each other */
 }
 
-.btn-group button:not(:last-child) {
+.btn-group radio:not(:last-child) {
     border-bottom: none; /* Prevent double borders */
 }
 
 /* Add a background color on hover */
-.btn-group button:hover {
+.btn-group radio:hover {
     background-color: #3e8e41;
 }
 .food-and-headings{
