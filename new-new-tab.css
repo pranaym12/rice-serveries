@@ -1,6 +1,9 @@
 html{
     width:100%;
 }
+button{
+    outline: none;
+}
 
 body{
     width:98%;  
@@ -36,7 +39,7 @@ h2{
     /*display: block;*/
     height: 65vh;
     min-width: 30vh;
-    width: 45vw;
+    width: 50vw;
     position: center;
     display: grid;
 
@@ -45,9 +48,13 @@ h2{
 .servery-choices{
     background-color: rgba(102,51,153)
 }
+.btn-group{
+    width: 15vw; /*Sets width of Buttons*/
+}
 .btn-group button {
     font-size: 3vh;
-    height: 10.83vh;
+    
+    height: 10.84vh;
     grid-column: 1;
     background-color: #f35ef8; /* Pink background */
     border: 1px solid black; /* Black border */
