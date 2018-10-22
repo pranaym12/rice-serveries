@@ -6,11 +6,11 @@ body{
     width:98%;  
     height:100%;
     padding-top: 0px;
-    background-color: #fcfcfc;
+    /*background-color: #fcfcfc;*/
+    /*background-position: center ;// would screw up the photo*/
     background-position: center center;
     background-size: 300vh;
     background-image: url("Images/rice-image-1.jpg");
-
 }
 
 h1{
@@ -46,10 +46,11 @@ h2{
     background-color: rgba(102,51,153)
 }
 .btn-group button {
+    font-size: 3vh;
     height: 10.83vh;
     grid-column: 1;
-    background-color: #4CAF50; /* Green background */
-    border: 1px solid green; /* Green border */
+    background-color: #f35ef8; /* Pink background */
+    border: 1px solid black; /* Black border */
     color: white; /* White text */
     padding: 10px 24px; /* Some padding */
     cursor: pointer; /* Pointer/hand icon */
@@ -63,13 +64,13 @@ h2{
 
 /* Add a background color on hover */
 .btn-group button:hover {
-    background-color: #3e8e41;
+    background-color: #f52c2c;
 }
 .food-and-headings{
     grid-column: 2;
 }
 .servery-buttons{
-    background: green;
+    background: #f52c2c;
 }
 
 .servery-info-head{
