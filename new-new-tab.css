@@ -17,7 +17,7 @@ body{
 
 .servery-info {
     /*display: block;*/
-    height: 65vh;
+    height: 75vh;
     min-width: 30vw;
     width: 50vw;
     position: center;
@@ -67,7 +67,7 @@ p{
 .btn-group button {
     font-size: 2.5vw;
     
-    height: 10.84vh;
+    height: 12.5vh;
     grid-column: 1;
     background-color: #f35ef8; /* Pink background */
     border: 1px solid black; /* Black border */
