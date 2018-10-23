@@ -88,21 +88,20 @@ function serveryUpdate(servName){
         $('#servery-name').text(servName);
     }
     localStorage['servery-key'] = servName;
-    //@POTLUCK LOOK HERE
+
     var foodList = foodOptionsDict[servName]; //foods in array form
     var foodString = ""; //foodList converted to string
     for(var i=0; i<foodList.length; i++){
-        if(i == foodList.length-1){
+        /*if(i == foodList.length-1){
             foodString += foodList[i];
         }
         else{
-            foodString += foodList[i] + "\n"; //@Potluck why doesn't this work?
-        }
+            foodString += "<p>"+foodList[i] + "</p>"; 
+        }*/
+        foodString += "<p>"+foodList[i] + "</p>";
     }
-    //@Potluck, the string is properly formatted, as demonstrated by the console.log
-    //Problem is the HTML doesn't recognize it
-    $('#list-of-foods').text(foodString);
-    console.log(foodString); 
+
+    $('#list-of-foods').html(foodString);
     updateTime();
 };
 function updateTime(){

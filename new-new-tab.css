@@ -46,6 +46,10 @@ body{
     margin-left: 1vw;
     font-size: 1.5vw;
 }
+p{
+    margin: 1vh;
+    font-weight: bold;
+}
 
 .boxed {
     border: 5px;
