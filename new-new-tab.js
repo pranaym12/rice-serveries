@@ -20,7 +20,7 @@ var foodOptionsDict = {
     "Black Bean and Potato Stew",
     "Brazilian Chicken and Rice Soup (Halal)",
     "Taco Salad with Chipotle Vinaigrette"],
-    Sidrich: ["Steamed Basmati Rice",
+    Sid: ["Steamed Basmati Rice",
     "Teriyaki Tofu",
     "Garlic Soba Noodles: Bean Sprouts, Snow Peas & Carrots",
     "Mongolian Grilled Chicken Thighs",
@@ -45,27 +45,27 @@ var foodOptionsDict = {
 $(function(){
     initialServeryUpdate();
     //$('#servery-name').text(localStorage['servery-key']);
-    $('#baker').click(function(){
+    $('#Baker').click(function(){
         //bakerUpdate();
         serveryUpdate("Baker");
     });
-    $('#north').click(function(){
+    $('#North').click(function(){
         //northUpdate();
         serveryUpdate("North");
     });
-    $('#seibel').click(function(){
+    $('#Seibel').click(function(){
         //seibelUpdate();
         serveryUpdate("Seibel");
     });
-    $('#sid').click(function(){
+    $('#Sid').click(function(){
         //sidUpdate();
-        serveryUpdate("Sid Rich");
+        serveryUpdate("Sid");
     });
-    $('#south').click(function(){
+    $('#South').click(function(){
         //southUpdate();
         serveryUpdate("South");
     });
-    $('#west').click(function(){
+    $('#West').click(function(){
         //westUpdate();
         serveryUpdate("West");
     });
@@ -79,7 +79,12 @@ function initialServeryUpdate(){
     }
 }
 function serveryUpdate(servName){
-    $('#servery-name').text(servName);
+    if(servName == "Sid"){
+        $('#servery-name').text("Sid Rich");
+    }
+    else{
+        $('#servery-name').text(servName);
+    }
     localStorage['servery-key'] = servName;
     updateTime();
 };
