@@ -34,13 +34,13 @@ var foodOptionsDict = {
     "Blackened Tofu Cutlets with Mustard Greens",
     "Southern Style Corn Bread",
     "Sweet Potato Pie"],
-    West: ["mashed potatoes",
-    "chicken fried chicken",
-    "pork loin roast",
-    "spinach onion tomato pinwheel",
-    "chickpea rice curry",
-    "smoked cheddar turkey burger",
-    "famous cauliflower hoisin"],
+    West: ["Mashed potatoes",
+    "Chicken fried chicken",
+    "Pork loin roast",
+    "Spinach onion tomato pinwheel",
+    "Chickpea rice curry",
+    "Smoked cheddar turkey burger",
+    "Famous cauliflower hoisin"],
 }
 $(function(){
     initialServeryUpdate();
@@ -79,13 +79,28 @@ function initialServeryUpdate(){
     }
 }
 function serveryUpdate(servName){
+    //Set servery header and local storage equal to servName
     if(servName == "Sid"){
+        //Keep "Sid" everywhere else, but I need to name the header "Sid Rich"
         $('#servery-name').text("Sid Rich");
     }
     else{
         $('#servery-name').text(servName);
     }
     localStorage['servery-key'] = servName;
+
+    var foodList = foodOptionsDict[servName]; //foods in array form
+    var foodString = ""; //foodList converted to string
+    for(var i=0; i<foodList.length; i++){
+        if(i == foodList.length-1){
+            foodString += foodList[i];
+        }
+        else{
+            foodString += foodList[i] + "\n";
+        }
+    }
+    $('#list-of-foods').text(foodString);
+    console.log(foodString);
     updateTime();
 };
 function updateTime(){
