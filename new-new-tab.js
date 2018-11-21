@@ -109,6 +109,8 @@ function updateTime(){
     console.log(d.getHours());
 };
 
+
+
 /*function bakerUpdate(){
     $('#servery-name').text("Baker");
     localStorage['servery-key'] = "Baker";

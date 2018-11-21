@@ -5,6 +5,9 @@
     "manifest_version": 2,
     "chrome_url_overrides": {
         "newtab":"new-new-tab.html"
-    }
+    },
+    "permissions": [
+        "http://dining.rice.edu/*"
+    ]
     
 }
