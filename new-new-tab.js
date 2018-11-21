@@ -107,9 +107,24 @@ function serveryUpdate(servName){
 function updateTime(){
     var d = new Date();
     console.log(d.getHours());
+    console.log(d.getMinutes());
+    console.log(d.getDay());
 };
 
-
+var xhr = new XMLHttpRequest();
+xhr.open("GET", "http://dining.rice.edu/", true);
+xhr.onreadystatechange = function() {
+    if(xhr.readyState === 4 && xhr.status === 200) {
+        let data = xhr.responseXML;
+        let food = data.querySelector("#Baker");
+        let items = food.querySelectorAll("div.menu-item");
+        for (let item of items) {
+            console.log(item.textContent);
+            console.log('hi');
+        }
+    }
+};
+xhr.send()
 
 /*function bakerUpdate(){
     $('#servery-name').text("Baker");
