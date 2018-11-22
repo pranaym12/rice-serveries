@@ -1,3 +1,24 @@
+class Servery{
+    constructor(name, dayDict) {
+        this.name = name;
+        this.dayDict = {
+            "Friday": dayDict["Friday"], 
+            "Saturday": dayDict["Saturday"], 
+            "Sunday": dayDict["Sunday"]
+        };
+        // this.friBool= dayDict["Friday"];
+        // this.satBool = dayDict["Saturday"];
+        // this.sunBool = dayDict["Sunday"];
+    }
+    toString(){
+        var fridayOpen = this.dayDict["Friday"] ? "open" : "closed";
+        var saturdayOpen = this.dayDict["Saturday"] ? "open" : "closed";
+        var sundayOpen = this.dayDict["Sunday"] ? "open" : "closed";
+        return this.name +": "+fridayOpen+" on  Friday, "+saturdayOpen+" on  Saturday, "+sundayOpen+" on  Sunday."
+    }
+}
+let baker = new Servery("Baker", {"Friday": false, "Saturday": false, "Sunday": false })
+console.log(baker.toString());
 var foodOptionsDict = {
     Baker: ["Turkey Swedish Meatballs",
     "Basial and Parmesan Orzo",
@@ -113,10 +134,19 @@ function updateTime(){
 
 var xhr = new XMLHttpRequest();
 xhr.open("GET", "http://dining.rice.edu/", true);
+xhr.overrideMimeType("text/html");
 xhr.onreadystatechange = function() {
     if(xhr.readyState === 4 && xhr.status === 200) {
-        let data = xhr.responseXML;
-        let food = data.querySelector("#Baker");
+        let parser = new DOMParser();
+        let data = parser.parseFromString(xhr.responseText, "text/html");
+        let food = data.querySelector("#Baker").parentElement;
+        // let food = data.querySelector();
+        let noBaker = food.querySelector(".nothere");
+        if (noBaker !== null) {
+            console.log("no baker");
+        } else {
+            console.log('Yes baker');
+        }
         let items = food.querySelectorAll("div.menu-item");
         for (let item of items) {
             console.log(item.textContent);
