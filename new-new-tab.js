@@ -1,6 +1,11 @@
 
 let baker = new Servery("Baker", {"Friday": false, "Saturday": false, "Sunday": false })
-console.log(baker.toString());
+let sid = new Servery("Sid", {"Friday": false, "Saturday": false, "Sunday": false })
+let south = new Servery("South", {"Friday": true, "Saturday": false, "Sunday": true })
+let west = new Servery("West", {"Friday": true, "Saturday": false, "Sunday": true })
+let north = new Servery("North", {"Friday": true, "Saturday": true, "Sunday": true })
+let seibel = new Servery("Seibel", {"Friday": true, "Saturday": true, "Sunday": true })
+
 var foodOptionsDict = {
     Baker: ["Turkey Swedish Meatballs",
     "Basial and Parmesan Orzo",
@@ -105,13 +110,6 @@ function serveryUpdate(servName){
     }
 
     $('#list-of-foods').html(foodString);
-    updateTime();
-};
-function updateTime(){
-    var d = new Date();
-    console.log(d.getHours());
-    console.log(d.getMinutes());
-    console.log(d.getDay());
 };
 
 var xhr = new XMLHttpRequest();
@@ -121,21 +119,27 @@ xhr.onreadystatechange = function() {
     if(xhr.readyState === 4 && xhr.status === 200) {
         let parser = new DOMParser();
         let data = parser.parseFromString(xhr.responseText, "text/html");
-        let food = data.querySelector("#Baker").parentElement;
-        // let food = data.querySelector();
-        let noBaker = food.querySelector(".nothere");
-        if (noBaker !== null) {
-            console.log("no baker");
-        } else {
-            console.log('Yes baker');
-        }
-        let items = food.querySelectorAll("div.menu-item");
-        for (let item of items) {
-            console.log(item.textContent);
-            console.log('hi');
+        serveriesStr = ["Baker", "Seibel", "SidRich", "North", "South", "West"];
+        serveriesLength = serveriesStr.length;
+        for (var i = 0; i < serveriesLength; i++) {
+            searchServeries(serveriesStr[i], data);
         }
     }
 };
+function searchServeries(serveryStr, data){
+    let food = data.querySelector("#"+serveryStr).parentElement;
+    let noFood = food.querySelector(".nothere");
+    if (noFood !== null) {
+        console.log(serveryStr + " closed");
+    } else {
+        console.log(serveryStr+' open');
+    }
+    let items = food.querySelectorAll("div.menu-item");
+    for (let item of items) {
+        console.log(item.textContent);
+        console.log('hi');
+    }
+}
 xhr.send()
 
 /*function bakerUpdate(){
