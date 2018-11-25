@@ -7,7 +7,8 @@
         "newtab":"new-new-tab.html"
     },
     "permissions": [
-        "http://dining.rice.edu/*"
+        "http://dining.rice.edu/*",
+        "storage"
     ]
     
 }
