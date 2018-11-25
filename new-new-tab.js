@@ -51,7 +51,7 @@ function serveryUpdate(servery){
     //Set servery header and local storage equal to servName
     //console.log(servery);
     let servName = servery.name;
-    //console.log(servName);
+    //console.log(servName, servery.dayDict);
     if(servName == "SidRich"){
         //Keep "Sid" everywhere else, but I need to name the header "Sid Rich"
         $('#servery-name').text("Sid Rich");
@@ -119,6 +119,16 @@ function serveryUpdate(servery){
         
     }
     
+    let serveryMessage = servery.name;
+    //openOrClosed = servery.isOpen()[0];
+    console.log("YOO" + servery.isOpen(), servery.getName());
+    if(servery.isOpen()[0]){
+        serveryMessage += " is open.";
+    }
+    else{
+        serveryMessage += " is closed.";
+    }
+    $('#servery-message').text(serveryMessage);
 
     
 };

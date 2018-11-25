@@ -44,17 +44,17 @@ class Servery {
             this.times.push(null);
         }
     }
-    getName(){
+    getName (){
         return this.name;
     }
-    toString() {
+    toString () {
         var fridayOpen = this.dayDict["Friday"] ? "open" : "closed";
         var saturdayOpen = this.dayDict["Saturday"] ? "open" : "closed";
         var sundayOpen = this.dayDict["Sunday"] ? "open" : "closed";
         return this.name + ": " + fridayOpen + " on  Friday, " + saturdayOpen + " on  Saturday, " + sundayOpen + " on  Sunday."
     }
 
-    isOpen() {
+    isOpen () {
         var d = new Date();
         var day = d.getDay();
         var hourMin = d.getHours() + d.getMinutes()/60;
@@ -81,11 +81,11 @@ class Servery {
         // console.log(day, hourMin);
     }
 
-    isOpenException(){
+    isOpenException (){
         return true;
     }
     //WHILE LOOP INDEFINITELY RUNNIG, BUT IDK WHY
-    whenWillOpen() {
+    whenWillOpen () {
         var d = new Date();
         var day = d.getDay();
         var hourMin = d.getHours() + d.getMinutes()/60;
@@ -127,7 +127,7 @@ class Servery {
             }
         }
     }
-    whenWillClose() {
+    whenWillClose () {
         let isOpen = this.isOpen();
         if(isOpen[0]){
             var d = new Date();
@@ -147,7 +147,7 @@ class Servery {
         }
     }
     //NEED TO FILL OUT
-    updateFoods(){
+    updateFoods (){
 
     }
 }
