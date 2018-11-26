@@ -1,9 +1,9 @@
-let baker = new Servery("Baker", {"Friday": false, "Saturday": false, "Sunday": false })
-let sid = new Servery("SidRich", {"Friday": false, "Saturday": false, "Sunday": false })
-let south = new Servery("South", {"Friday": true, "Saturday": false, "Sunday": true })
-let west = new Servery("West", {"Friday": true, "Saturday": false, "Sunday": true })
-let north = new Servery("North", {"Friday": true, "Saturday": true, "Sunday": true })
-let seibel = new Servery("Seibel", {"Friday": true, "Saturday": true, "Sunday": true })
+const baker = new Servery("Baker", {"Friday": false, "Saturday": false, "Sunday": false })
+const sid = new Servery("SidRich", {"Friday": false, "Saturday": false, "Sunday": false })
+const south = new Servery("South", {"Friday": true, "Saturday": false, "Sunday": true })
+const west = new Servery("West", {"Friday": true, "Saturday": false, "Sunday": true })
+const north = new Servery("North", {"Friday": true, "Saturday": true, "Sunday": true })
+const seibel = new Servery("Seibel", {"Friday": true, "Saturday": true, "Sunday": true })
 var foodOptionsDict = {}
 
 $(function(){
@@ -49,9 +49,7 @@ function initialServeryUpdate(){
 }
 function serveryUpdate(servery){
     //Set servery header and local storage equal to servName
-    //console.log(servery);
     let servName = servery.name;
-    //console.log(servName, servery.dayDict);
     if(servName == "SidRich"){
         //Keep "Sid" everywhere else, but I need to name the header "Sid Rich"
         $('#servery-name').text("Sid Rich");
@@ -60,7 +58,7 @@ function serveryUpdate(servery){
         $('#servery-name').text(servName);
     }
     chrome.storage.sync.set({'servery': servery}, function(){});
-    //localStorage['servery-key'] = servName;
+
     var d = new Date();
     timeNow = d.getTime();
     
@@ -102,7 +100,7 @@ function serveryUpdate(servery){
         localStorage["time"] = timeNow;
         //console.log(localStorage["time"]);
     }
-    else{ console.log("not downloading");
+    else{ //console.log("not downloading");
         let foodString = ""; //foodList converted to string
         chrome.storage.sync.get(['servery_menus'], function(result) {
             //console.log(result.servery_menus);
@@ -119,16 +117,14 @@ function serveryUpdate(servery){
         
     }
     
-    let serveryMessage = servery.name;
     //openOrClosed = servery.isOpen()[0];
+    console.log("Servery:");
+    //console.log( Object.keys(servery) );
+    console.log( typeof servery.isOpen+typeof servery.getName+ typeof servery.name);
     console.log("YOO" + servery.isOpen(), servery.getName());
-    if(servery.isOpen()[0]){
-        serveryMessage += " is open.";
-    }
-    else{
-        serveryMessage += " is closed.";
-    }
-    $('#servery-message').text(serveryMessage);
+    
+    
+    $('#servery-message').text(servery.serveryMessage());
 
     
 };

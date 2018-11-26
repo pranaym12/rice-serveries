@@ -84,7 +84,7 @@ class Servery {
     isOpenException (){
         return true;
     }
-    //WHILE LOOP INDEFINITELY RUNNIG, BUT IDK WHY
+
     whenWillOpen () {
         var d = new Date();
         var day = d.getDay();
@@ -92,12 +92,10 @@ class Servery {
         var dayCount = day; 
         var searching = true;
         var whichMeal = -1;
-        console.log(hourMin);
         while(searching){
             //if the servery is open today
             if(this.times[dayCount]){
                 //if there's breakfast
-                
                 if(this.times[dayCount][0]){
                     if(hourMin <= this.times[dayCount][0][0]){
                         searching = false;
@@ -106,7 +104,7 @@ class Servery {
                     }
                 }
                 //if it's before lunch
-                if(hourMin <= this.times[dayCount][1][0]){
+                if(hourMin <= this.times[dayCount][1][0] && function(){console.log("test");}){
                     searching = false;
                     whichMeal = 1;
                     return [dayCount % 7, whichMeal, this.times[dayCount][whichMeal][0]];
@@ -119,13 +117,41 @@ class Servery {
                 }
                 else{ //if time is after dinner
                     dayCount += 1;
+                    hourMin = 0;
                 }
             }
             else{ 
                 //if servery's closed today
                 dayCount += 1; 
+                hourMin = 0;
             }
         }
+    }
+    numberToDay (dayNum) {
+        let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+        return days[dayNum];
+    }
+    hourMinToTime (hourMin){
+        let ampm = ""
+        let min = hourMin - Math.floor(hourMin);
+        let minInt = Math.round(60*min)
+        let hour = Math.floor(hourMin);
+
+        if(hour < 12){
+            ampm = "AM";
+            if(hour == 0){
+                hour = 12;
+            }
+            let hourString = hour.toString();
+            ;
+        }
+        else{
+            ampm = "PM";
+            if(hour > 12) {
+                hour -= 12;
+            }
+        }
+        return hour.toString() + ":"+minInt.toString()+" "+ampm;
     }
     whenWillClose () {
         let isOpen = this.isOpen();
@@ -146,8 +172,32 @@ class Servery {
             return 10000;
         }
     }
+    serveryMessage () {
+        let d = new Date();
+        let serveryMessage = this.name;
+        if(this.isOpen()[0]){ 
+            serveryMessage += " is open until ";
+            serveryMessage += this.whenWillClose();
+        }
+        else{
+            serveryMessage += " is closed. ";
+            
+            let whenOpen = this.whenWillOpen();
+            if(d.getDay() == whenOpen[2]){
+                serveryMessage += this.name + " opens at " + this.hourMinToTime(whenOpen[2]);
+            }
+            else{
+                serveryMessage += this.name+ " opens on "+this.numberToDay(whenOpen[0]) 
+                + " at " + this.hourMinToTime(whenOpen[2]);
+            }
+        }
+        return serveryMessage;
+    }
     //NEED TO FILL OUT
     updateFoods (){
 
+    }
+    timeLastUpdated () {
+        
     }
 }
