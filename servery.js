@@ -177,17 +177,17 @@ class Servery {
         let serveryMessage = this.name;
         if(this.isOpen()[0]){ 
             serveryMessage += " is open until ";
-            serveryMessage += this.whenWillClose();
+            serveryMessage += this.hourMinToTime(this.whenWillClose());
         }
         else{
-            serveryMessage += " is closed. ";
+            serveryMessage += " is closed, ";
             
             let whenOpen = this.whenWillOpen();
-            if(d.getDay() == whenOpen[2]){
-                serveryMessage += this.name + " opens at " + this.hourMinToTime(whenOpen[2]);
+            if(d.getDay() == whenOpen[0]){
+                serveryMessage += "and opens at " + this.hourMinToTime(whenOpen[2]);
             }
             else{
-                serveryMessage += this.name+ " opens on "+this.numberToDay(whenOpen[0]) 
+                serveryMessage += "and opens on "+this.numberToDay(whenOpen[0]) 
                 + " at " + this.hourMinToTime(whenOpen[2]);
             }
         }

@@ -4,54 +4,38 @@ const south = new Servery("South", {"Friday": true, "Saturday": false, "Sunday":
 const west = new Servery("West", {"Friday": true, "Saturday": false, "Sunday": true })
 const north = new Servery("North", {"Friday": true, "Saturday": true, "Sunday": true })
 const seibel = new Servery("Seibel", {"Friday": true, "Saturday": true, "Sunday": true })
-var foodOptionsDict = {}
 
 $(function(){
     initialServeryUpdate();
-    //$('#servery-name').text(localStorage['servery-key']);
     $('#Baker').click(function(){
-        //bakerUpdate();
         serveryUpdate(baker);
     });
     $('#North').click(function(){
-        //northUpdate();
         serveryUpdate(north);
     });
     $('#Seibel').click(function(){
-        //seibelUpdate();
         serveryUpdate(seibel);
     });
     $('#Sid').click(function(){
-        //sidUpdate();
         serveryUpdate(sid);
     });
     $('#South').click(function(){
-        //southUpdate();
         serveryUpdate(south);
     });
     $('#West').click(function(){
-        //westUpdate();
         serveryUpdate(west);
     });
 });
 function initialServeryUpdate(){
     chrome.storage.sync.get(['servery'], function(result) {
-        //console.log('Value currently is ' + result.key);
-        if (result.servery){
-            //console.log(result.servery);
-            serveryUpdate(result.servery);
-        }
-        else{
-            serveryUpdate(seibel);
-        }
+        result.servery ? serveryUpdate(result.servery) : serveryUpdate(seibel);
       });
-    
 }
 function serveryUpdate(servery){
     //Set servery header and local storage equal to servName
     let servName = servery.name;
     if(servName == "SidRich"){
-        //Keep "Sid" everywhere else, but I need to name the header "Sid Rich"
+        //Keep "SidRich" everywhere else, but I need to name the header "Sid Rich"
         $('#servery-name').text("Sid Rich");
     }
     else{
@@ -62,7 +46,7 @@ function serveryUpdate(servery){
     var d = new Date();
     timeNow = d.getTime();
     
-    if(typeof localStorage["time"] == "undefined" || timeNow - localStorage["time"] > 5000){
+    if(typeof localStorage["time"] == "undefined" || timeNow - localStorage["time"] > 60000){
         console.log("downloading");
         var xhr = new XMLHttpRequest();
         xhr.open("GET", "http://dining.rice.edu/", true);
@@ -117,16 +101,12 @@ function serveryUpdate(servery){
         
     }
     
-    //openOrClosed = servery.isOpen()[0];
-    console.log("Servery:");
+    console.log("----------------------------------------");
     //console.log( Object.keys(servery) );
-    console.log( typeof servery.isOpen+typeof servery.getName+ typeof servery.name);
-    console.log("YOO" + servery.isOpen(), servery.getName());
-    
+    console.log("isOpen function: "+ typeof servery.isOpen+", \ngetName function: "
+    +typeof servery.getName+ ", \nservery.name: "+typeof servery.name);    
     
     $('#servery-message').text(servery.serveryMessage());
-
-    
 };
 
 function searchServeries(serveryStr, data){
