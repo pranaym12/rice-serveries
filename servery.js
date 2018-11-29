@@ -174,7 +174,14 @@ class Servery {
     }
     serveryMessage () {
         let d = new Date();
-        let serveryMessage = this.name;
+        let serveryMessage = "";
+        if(this.name=="SidRich"){
+            serveryMessage = "Sid Rich";
+        }
+        else{
+            serveryMessage = this.name;
+        }
+        
         if(this.isOpen()[0]){ 
             serveryMessage += " is open until ";
             serveryMessage += this.hourMinToTime(this.whenWillClose());
