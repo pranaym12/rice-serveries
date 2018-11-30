@@ -151,7 +151,14 @@ class Servery {
                 hour -= 12;
             }
         }
-        return hour.toString() + ":"+minInt.toString()+" "+ampm;
+        let minString = "";
+        if(minInt < 10){
+            minString = "0" + minInt.toString();
+        }
+        else{
+            minString = minInt.toString();
+        }
+        return hour.toString() + ":"+minString+" "+ampm;
     }
     whenWillClose () {
         let isOpen = this.isOpen();
