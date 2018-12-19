@@ -28,7 +28,12 @@ $(function(){
 });
 function initialServeryUpdate(){
     chrome.storage.sync.get(['servery'], function(result) {
-        result.servery ? serveryUpdate(result.servery) : serveryUpdate(seibel);
+        if(result.servery){
+            serveryUpdate(result.servery);
+        } 
+        else{
+            serveryUpdate(seibel);
+        }
       });
 }
 function serveryUpdate(servery){
