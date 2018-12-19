@@ -47,6 +47,9 @@ class Servery {
     getName (){
         return this.name;
     }
+    getNameAllCaps () {
+        return this.name.toUpperCase();
+    }
     toString () {
         var fridayOpen = this.dayDict["Friday"] ? "open" : "closed";
         var saturdayOpen = this.dayDict["Saturday"] ? "open" : "closed";

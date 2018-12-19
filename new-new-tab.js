@@ -79,7 +79,10 @@ function serveryUpdate(servery){
                     if(serveriesDict[servName]){
                         var foodList = serveriesDict[servName]; //foods in array form
                         for(var i=0; i<foodList.length; i++){
-                            foodString += "<p>"+foodList[i] + "</p>";
+                            //Capitalize the first letter of the string
+                            var foodCap = foodList[i].charAt(0).toUpperCase() + foodList[i].slice(1)
+                            foodString += "<p>"+foodCap + "</p>";
+                            //foodString += "<p>"+foodList[i] + "</p>";
                         }
                     }
                     $('#list-of-foods').html(foodString);
