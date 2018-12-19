@@ -5,7 +5,10 @@ const west = new Servery("West", {"Friday": true, "Saturday": false, "Sunday": t
 const north = new Servery("North", {"Friday": true, "Saturday": true, "Sunday": true })
 const seibel = new Servery("Seibel", {"Friday": true, "Saturday": true, "Sunday": true })
 
+var allServeries = {Baker:baker, SidRich: sid, South: south, West: west, North: north, Seibel: seibel};
+
 $(function(){
+    // serveryUpdate(baker);
     initialServeryUpdate();
     $('#Baker').click(function(){
         serveryUpdate(baker);
@@ -29,7 +32,7 @@ $(function(){
 function initialServeryUpdate(){
     chrome.storage.sync.get(['servery'], function(result) {
         if(result.servery){
-            serveryUpdate(result.servery);
+            serveryUpdate(allServeries[result.servery]);
         } 
         else{
             serveryUpdate(seibel);
@@ -46,7 +49,7 @@ function serveryUpdate(servery){
     else{
         $('#servery-name').text(servName);
     }
-    chrome.storage.sync.set({'servery': servery}, function(){});
+    chrome.storage.sync.set({'servery': servery.getName()}, function(){});
 
     var d = new Date();
     timeNow = d.getTime();
