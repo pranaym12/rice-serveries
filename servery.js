@@ -71,12 +71,13 @@ class Servery {
             if(hourMin >= this.times[day][1][0] && hourMin <= this.times[day][1][1]){
                 return [true, "Lunch"];
             }
-            else if(hourMin >= this.times[day][2][0] && hourMin <= this.times[day][2][1]){
-                return [true, "Dinner"];
+            if(this.times[day][2]){
+                if(hourMin >= this.times[day][2][0] && hourMin <= this.times[day][2][1]){
+                    return [true, "Dinner"];
+                }
             }
-            else{
-                return [false, null];
-            }
+            return [false, null];
+            
         }
         else{
             return [false, null];
@@ -113,6 +114,7 @@ class Servery {
                     return [dayCount % 7, whichMeal, this.times[dayCount][whichMeal][0]];
                 }
                 //if it's before dinner
+                
                 else if( hourMin <= this.times[dayCount][2][0]){
                     searching = false;
                     whichMeal = 2;

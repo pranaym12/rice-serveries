@@ -4,7 +4,7 @@ const south = new Servery("South", {"Friday": true, "Saturday": false, "Sunday":
 const west = new Servery("West", {"Friday": true, "Saturday": false, "Sunday": true })
 const north = new Servery("North", {"Friday": true, "Saturday": true, "Sunday": true })
 const seibel = new Servery("Seibel", {"Friday": true, "Saturday": true, "Sunday": true })
-var reloadMin = 0.1 //number of minutes to wait between reloads
+var reloadMin = 0.5 //number of minutes to wait between reloads
 var allServeries = {Baker:baker, SidRich: sid, South: south, West: west, North: north, Seibel: seibel};
 
 $(function(){
@@ -94,6 +94,7 @@ function serveryUpdate(servery){
                 promptMessage = generatePrompt(data, numServeriesWithFood);
                 $('#prompt').text(promptMessage);
                 //save promptMessage and serveriesDict in chrome storage
+                
                 chrome.storage.sync.set({'servery_menus': serveriesDict, prompt: promptMessage}, function() {
                     var foodString = ""; //foodList converted to string
                     if(serveriesDict[servName]){
@@ -119,7 +120,7 @@ function serveryUpdate(servery){
     else{ //console.log("not downloading");
         let foodString = ""; //foodList converted to string
         chrome.storage.sync.get(['servery_menus'], function(result) {
-            //console.log(result.servery_menus);
+            // console.log(result.servery_menus);
             let serveriesDict = result.servery_menus;
             //console.log(serveriesDict);
             if(serveriesDict[servName]){
@@ -139,10 +140,14 @@ function serveryUpdate(servery){
 function generatePrompt(data, numServeriesWithFood){
 
     let promptMessage = "";
+    
     //if at least one servery is open based on timing, AND dining.rice shows >=1 servery's food
+    // console.log(!baker.isOpen()[0] && !sid.isOpen()[0] && !south.isOpen()[0] && !west.isOpen()[0] 
+    // && !north.isOpen()[0] && !seibel.isOpen()[0]);
     if(!allServeriesClosed() && numServerieswithFood > 0 ){
         promptMessage = "What would you like to eat today?";
     }
+
     //if serveries are closed from timing, OR no food on dining.rice
     if(allServeriesClosed() || numServeriesWithFood <= 0){
         promptMessage += "All serveries are closed."
