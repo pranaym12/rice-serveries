@@ -53,6 +53,7 @@ function serveryUpdate(servery){
 
     var d = new Date();
     timeNow = d.getTime();
+    console.log(currentTime());
     
     if(typeof localStorage["time"] == "undefined" || timeNow - localStorage["time"] > 60000){
         console.log("downloading");
@@ -134,4 +135,35 @@ function searchServeries(serveryStr, data){
     } else {
         //console.log(serveryStr + " closed");
     }
+}
+
+function currentTime(){
+    /*
+    Outputs the current time as a string of the form 9:45AM
+    */
+    var d = new Date();
+    let hour = d.getHours();
+    let minInt = d.getMinutes();
+    let ampm = "";
+    if(hour < 12){
+        ampm = "AM";
+        if(hour == 0){
+            hour = 12;
+        }
+        ;
+    }
+    else{
+        ampm = "PM";
+        if(hour > 12) {
+            hour -= 12;
+        }
+    }
+    let minString = "";
+    if(minInt < 10){
+        minString = "0" + minInt.toString();
+    }
+    else{
+        minString = minInt.toString();
+    }
+    return hour.toString() + ":"+minString+" "+ampm;
 }
