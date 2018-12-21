@@ -4,7 +4,7 @@ const south = new Servery("South", {"Friday": true, "Saturday": false, "Sunday":
 const west = new Servery("West", {"Friday": true, "Saturday": false, "Sunday": true })
 const north = new Servery("North", {"Friday": true, "Saturday": true, "Sunday": true })
 const seibel = new Servery("Seibel", {"Friday": true, "Saturday": true, "Sunday": true })
-var reloadMin = 0.5 //number of minutes to wait between reloads
+var reloadMin = 5 //number of minutes to wait between reloads
 var allServeries = {Baker:baker, SidRich: sid, South: south, West: west, North: north, Seibel: seibel};
 
 $(function(){
@@ -55,7 +55,7 @@ function serveryUpdate(servery){
     //(later, if program downloads, set HTML again to new promptMessage)
     var promptMessage = "";
     chrome.storage.sync.get(['prompt'], function(result){
-        console.log("chrome storage of prompt: " + result.prompt);
+        //console.log("chrome storage of prompt: " + result.prompt);
         promptMessage = result.prompt;
         $('#prompt').text(promptMessage);
     })
@@ -144,7 +144,7 @@ function generatePrompt(data, numServeriesWithFood){
     //if at least one servery is open based on timing, AND dining.rice shows >=1 servery's food
     // console.log(!baker.isOpen()[0] && !sid.isOpen()[0] && !south.isOpen()[0] && !west.isOpen()[0] 
     // && !north.isOpen()[0] && !seibel.isOpen()[0]);
-    if(!allServeriesClosed() && numServerieswithFood > 0 ){
+    if(!allServeriesClosed() && numServeriesWithFood > 0 ){
         promptMessage = "What would you like to eat today?";
     }
 
@@ -169,7 +169,7 @@ function generatePrompt(data, numServeriesWithFood){
         }
     }
 
-    console.log("Number serveries open: " + numServeriesWithFood);
+    //console.log("Number serveries open: " + numServeriesWithFood);
     
     $('#prompt').text(promptMessage);
     return promptMessage;

@@ -72,9 +72,13 @@ class Servery {
                 return [true, "Lunch"];
             }
             if(this.times[day][2]){
-                if(hourMin >= this.times[day][2][0] && hourMin <= this.times[day][2][1]){
-                    return [true, "Dinner"];
+                //console.log("wassup");
+                if(this.times[day][2][0]){
+                    if(hourMin >= this.times[day][2][0] && hourMin <= this.times[day][2][1]){
+                        return [true, "Dinner"];
+                    }                
                 }
+
             }
             return [false, null];
             
@@ -96,7 +100,11 @@ class Servery {
         var dayCount = day; 
         var searching = true;
         var whichMeal = -1;
+        
         while(searching){
+            //make sure I can access this.times[dayCount].
+            dayCount = dayCount % 7;
+
             //if the servery is open today
             if(this.times[dayCount]){
                 //if there's breakfast
@@ -107,6 +115,7 @@ class Servery {
                         return [dayCount % 7, whichMeal, this.times[dayCount][whichMeal][0]];
                     }
                 }
+                
                 //if it's before lunch
                 if(hourMin <= this.times[dayCount][1][0] && function(){console.log("test");}){
                     searching = false;
@@ -121,7 +130,6 @@ class Servery {
                         return [dayCount % 7, whichMeal, this.times[dayCount][whichMeal][0]];
                     }                    
                 }
-
                 //if time is after dinner
                 dayCount += 1;
                 hourMin = 0;
@@ -202,8 +210,8 @@ class Servery {
         }
         else{
             serveryMessage += " is closed, ";
-            
             let whenOpen = this.whenWillOpen();
+
             if(d.getDay() == whenOpen[0]){
                 serveryMessage += "and opens at " + this.hourMinToTime(whenOpen[2]);
             }
