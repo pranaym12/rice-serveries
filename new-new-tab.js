@@ -4,7 +4,7 @@ const south = new Servery("South", {"Friday": true, "Saturday": false, "Sunday":
 const west = new Servery("West", {"Friday": true, "Saturday": false, "Sunday": true })
 const north = new Servery("North", {"Friday": true, "Saturday": true, "Sunday": true })
 const seibel = new Servery("Seibel", {"Friday": true, "Saturday": true, "Sunday": true })
-
+var reloadMin = 0.1 //number of minutes to wait between reloads
 var allServeries = {Baker:baker, SidRich: sid, South: south, West: west, North: north, Seibel: seibel};
 
 $(function(){
@@ -51,11 +51,21 @@ function serveryUpdate(servery){
     }
     chrome.storage.sync.set({'servery': servery.getName()}, function(){});
 
+    //set prompt in HTML equal to promptMessage in chrome storage
+    //(later, if program downloads, set HTML again to new promptMessage)
+    var promptMessage = "";
+    chrome.storage.sync.get(['prompt'], function(result){
+        console.log("chrome storage of prompt: " + result.prompt);
+        promptMessage = result.prompt;
+        $('#prompt').text(promptMessage);
+    })
+    $('#servery-message').text(servery.serveryMessage());
+
     var d = new Date();
     timeNow = d.getTime();
     console.log(currentTime());
-    
-    if(typeof localStorage["time"] == "undefined" || timeNow - localStorage["time"] > 60000){
+
+    if(typeof localStorage["time"] == "undefined" || timeNow - localStorage["time"] > reloadMin*60000){
         console.log("downloading");
         var xhr = new XMLHttpRequest();
         xhr.open("GET", "http://dining.rice.edu/", true);
@@ -66,16 +76,25 @@ function serveryUpdate(servery){
                 //status = 200 says "oK" 
                 let parser = new DOMParser();
                 let data = parser.parseFromString(xhr.responseText, "text/html");
+
                 serveriesStr = ["Baker", "Seibel", "SidRich", "North", "South", "West"];
                 serveriesLength = serveriesStr.length;
                 let serveriesDict = {}
+                var numServeriesWithFood = 0; //track # serv displaying food
+
                 for (var i = 0; i < serveriesLength; i++) {
                     let thisServery = searchServeries(serveriesStr[i], data);
                     if(thisServery){
                         serveriesDict[ serveriesStr[i] ] = thisServery;
+                        //if servery is open, add 1 to counter
+                        numServeriesWithFood += 1;
                     }
                 }
-                chrome.storage.sync.set({'servery_menus': serveriesDict}, function() {
+                //update with new promptMessage in hHML, and save in Chrome Storage
+                promptMessage = generatePrompt(data, numServeriesWithFood);
+                $('#prompt').text(promptMessage);
+                //save promptMessage and serveriesDict in chrome storage
+                chrome.storage.sync.set({'servery_menus': serveriesDict, prompt: promptMessage}, function() {
                     var foodString = ""; //foodList converted to string
                     if(serveriesDict[servName]){
                         var foodList = serveriesDict[servName]; //foods in array form
@@ -89,6 +108,7 @@ function serveryUpdate(servery){
                     $('#list-of-foods').html(foodString);
                     //console.log(serveriesDict);
                 });
+
             }
         };
         xhr.send()
@@ -112,14 +132,50 @@ function serveryUpdate(servery){
         });
         
     }
-    
     console.log("----------------------------------------");
-    //console.log( Object.keys(servery) );
-    console.log("isOpen function: "+ typeof servery.isOpen+", \ngetName function: "
-    +typeof servery.getName+ ", \nservery.name: "+typeof servery.name);    
-    
-    $('#servery-message').text(servery.serveryMessage());
+
 };
+
+function generatePrompt(data, numServeriesWithFood){
+
+    let promptMessage = "";
+    //if at least one servery is open based on timing, AND dining.rice shows >=1 servery's food
+    if(!allServeriesClosed() && numServerieswithFood > 0 ){
+        promptMessage = "What would you like to eat today?";
+    }
+    //if serveries are closed from timing, OR no food on dining.rice
+    if(allServeriesClosed() || numServeriesWithFood <= 0){
+        promptMessage += "All serveries are closed."
+    }
+    //if dining.rice shows at least one servery open, ADD "Your Lunch/Dinner Today:"
+    let foodTodayMessage = data.querySelector(".col_4");
+    if(numServeriesWithFood > 0){
+        if(foodTodayMessage){
+            foodTodayString = foodTodayMessage.innerHTML
+            // let whichMeal = "";
+            if(foodTodayString.includes("Your") && foodTodayString.includes("Today:")){
+                //original message says "Your Lunch Today:" or "Your Dinner Today:"
+                //set whichMeal equal to "Lunch" or "Dinner";
+                promptMeal += foodTodayString.slice(
+                    foodTodayString.indexOf("Your"),
+                    foodTodayString.indexOf("Today:")+6);
+                //promptMessage += "Your " + whichMeal + " Today:";
+            }
+        }
+    }
+
+    console.log("Number serveries open: " + numServeriesWithFood);
+    
+    $('#prompt').text(promptMessage);
+    return promptMessage;
+}
+function allServeriesClosed(){
+    //based on TIME
+    //return True if *all* serveries are closed
+    //return False if at least 1 is closed
+    return (!baker.isOpen()[0] && !sid.isOpen()[0] && !south.isOpen()[0] && !west.isOpen()[0] 
+    && !north.isOpen()[0] && !seibel.isOpen()[0]);
+}
 
 function searchServeries(serveryStr, data){
     let food = data.querySelector("#"+serveryStr).parentElement;
