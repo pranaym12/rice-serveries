@@ -114,16 +114,18 @@ class Servery {
                     return [dayCount % 7, whichMeal, this.times[dayCount][whichMeal][0]];
                 }
                 //if it's before dinner
+                if(this.times[dayCount][2]){
+                    if( hourMin <= this.times[dayCount][2][0]){
+                        searching = false;
+                        whichMeal = 2;
+                        return [dayCount % 7, whichMeal, this.times[dayCount][whichMeal][0]];
+                    }                    
+                }
+
+                //if time is after dinner
+                dayCount += 1;
+                hourMin = 0;
                 
-                else if( hourMin <= this.times[dayCount][2][0]){
-                    searching = false;
-                    whichMeal = 2;
-                    return [dayCount % 7, whichMeal, this.times[dayCount][whichMeal][0]];
-                }
-                else{ //if time is after dinner
-                    dayCount += 1;
-                    hourMin = 0;
-                }
             }
             else{ 
                 //if servery's closed today
