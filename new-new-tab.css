@@ -1,15 +1,14 @@
-body{
-    /* background-image: url('Images/morning-HQ.jpg');
+body,html{
+    height: 100%;
+    margin: 0;
+}
+.bg{
+    background-image: url('Images/morning-HQ.jpg');
+    height: 100%;
+    width: 100%;
+    background-position: center ;
+    background-repeat: no-repeat;
     background-size: cover;
-    background-position: center center;
-    background-repeat: no-repeat; */
-    width:98%;  
-    height:100%;
-    /*background-color: #fcfcfc;*/
-    /* background-position: center ;// would screw up the photo */
-    /*background-position: center center;*/
-    background-size: 300vh;
-    background-image: url("Images/Old-Images/rice-image-1.jpg");
 }
 /* html{
     width:100%;
@@ -23,7 +22,7 @@ body{
     height:100%;
     /*background-color: #fcfcfc;*/
     /*background-position: center ;// would screw up the photo*/
-    /*background-position: center center;
+/*    background-position: center center;
     background-size: 300vh;
     background-image: url("Images/rice-image-1.jpg");
 }
