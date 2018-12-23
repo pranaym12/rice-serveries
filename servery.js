@@ -28,7 +28,7 @@ class Servery {
         // };
         this.times.push([avgB.slice(), avgL.slice(), avgD.slice()]);
         this.times.push([avgB.slice(), avgL.slice(), avgD.slice()]);
-        this.times.push([ avgB.slice(), avgL.slice(), avgD.slice()]);
+        this.times.push([avgB.slice(), avgL.slice(), avgD.slice()]);
         this.times.push([avgB.slice(), avgL.slice(), avgD.slice()]);
         
         if(this.dayDict["Friday"]){
@@ -63,25 +63,21 @@ class Servery {
         var hourMin = d.getHours() + d.getMinutes()/60;
         //first check if servery is open today
         if(this.times[day]){
-            if(this.times[day][0]){
-                if(hourMin >= this.times[day][0][0] && hourMin <= this.times[day][0][1]){
-                    return [true, "Breakfast"];
-                }
+            
+            if(this.times[day][0]&& hourMin >= this.times[day][0][0] && hourMin <= this.times[day][0][1]){
+                return [true, "Breakfast"];
             }
-            if(hourMin >= this.times[day][1][0] && hourMin <= this.times[day][1][1]){
+            
+            else if(hourMin >= this.times[day][1][0] && hourMin <= this.times[day][1][1]){
                 return [true, "Lunch"];
             }
-            if(this.times[day][2]){
+            else if(this.times[day][2] &&  this.times[day][2][0] && hourMin >= this.times[day][2][0] && hourMin <= this.times[day][2][1]){
                 //console.log("wassup");
-                if(this.times[day][2][0]){
-                    if(hourMin >= this.times[day][2][0] && hourMin <= this.times[day][2][1]){
-                        return [true, "Dinner"];
-                    }                
-                }
-
+                return [true, "Dinner"];
             }
-            return [false, null];
-            
+            else{
+                return [false, null];
+            }
         }
         else{
             return [false, null];
@@ -108,32 +104,29 @@ class Servery {
             //if the servery is open today
             if(this.times[dayCount]){
                 //if there's breakfast
-                if(this.times[dayCount][0]){
-                    if(hourMin <= this.times[dayCount][0][0]){
-                        searching = false;
-                        whichMeal = 0;
-                        return [dayCount % 7, whichMeal, this.times[dayCount][whichMeal][0]];
-                    }
+                if(this.times[dayCount][0]&&hourMin <= this.times[dayCount][0][0]){
+                    searching = false;
+                    whichMeal = 0;
+                    return [dayCount % 7, whichMeal, this.times[dayCount][whichMeal][0]];
                 }
                 
                 //if it's before lunch
-                if(hourMin <= this.times[dayCount][1][0] && function(){console.log("test");}){
+                else if(hourMin <= this.times[dayCount][1][0] && function(){console.log("test");}){
                     searching = false;
                     whichMeal = 1;
                     return [dayCount % 7, whichMeal, this.times[dayCount][whichMeal][0]];
                 }
                 //if it's before dinner
-                if(this.times[dayCount][2]){
-                    if( hourMin <= this.times[dayCount][2][0]){
-                        searching = false;
-                        whichMeal = 2;
-                        return [dayCount % 7, whichMeal, this.times[dayCount][whichMeal][0]];
-                    }                    
+                else if(this.times[dayCount][2] && hourMin <= this.times[dayCount][2][0]){
+                    searching = false;
+                    whichMeal = 2;
+                    return [dayCount % 7, whichMeal, this.times[dayCount][whichMeal][0]];              
                 }
                 //if time is after dinner
-                dayCount += 1;
-                hourMin = 0;
-                
+                else{
+                    dayCount += 1;
+                    hourMin = 0;
+                } 
             }
             else{ 
                 //if servery's closed today
