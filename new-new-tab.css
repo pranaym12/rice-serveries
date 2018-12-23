@@ -1,6 +1,8 @@
 body,html{
     height: 100%;
     margin: 0;
+    min-height: 300px;
+    min-width: 550px;
     overscroll-behavior: none; /*Likely only works in Chrome*/
 }
 .bg{
