@@ -12,6 +12,12 @@ body,html{
     background-position: center ;
     background-repeat: no-repeat;
     background-size: cover;
+    z-index: -1;
+
+}
+.center{
+    text-align: center;
+    color: #FFFFFF;
 }
 /* html{
     width:100%;
