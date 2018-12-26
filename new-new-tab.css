@@ -6,7 +6,7 @@ body,html{
     overscroll-behavior: none; /*Likely only works in Chrome*/
 }
 .bg{
-    background-image: url('Images/morning-HQ.jpg');
+    background-image: url('Images/mild-nighttime.jpg');
     height: 100%;
     width: 100%;
     background-position: center ;
