@@ -64,10 +64,13 @@ body,html{
     text-align: center;
 }
 .side-buttons{
-    /* width: 200px; */
     max-width: 90%;
     height: 71px;
     cursor: pointer;
+    /* display: flex;
+  align-items: center;
+  height: 100%; */
+    
 }
 .label-text{
     font-family: Nunito-BoldItalic;
@@ -77,14 +80,19 @@ body,html{
     letter-spacing: 4px;
     padding-right: 10px;
     max-width: 100%;
+    /* height: 100%; */
     line-height: 71px;
-
     /* display: flex;
     align-items: center; */
+    z-index: 1;
+    
 }
-
-button{
-
+.colored-strip{
+    height: 30%;
+    z-index: 2;
+    /* margin-bottom: auto; */
+    position: relative; 
+    top: 0px;
 }
 
 @font-face {
