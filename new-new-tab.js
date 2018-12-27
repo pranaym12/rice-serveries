@@ -246,19 +246,19 @@ function setTimeDaytimeImage(){
     $('#daytime').text("Good "+timeOfDay);
 
     //Set image
-    if(hour24>=8 && hour24<12){
+    if(hour24>=8 && hour24<14){
         //brochstein
         setBackgroundImage('Images/moody.jpg');
     }
-    else if(hour24>=12 && hour24 < 17){
+    else if(hour24>=14 && hour24 < 118){
         //front-entrance
         setBackgroundImage('Images/skyspace.jpg');
     }
-    else if(hour24>=17 && hour24<21){
+    else if(hour24>=18 && hour24<22){
         //mild-nighttime
         setBackgroundImage('Images/mild-nighttime.jpg');
     }
-    else if ((hour24>=21 && hour24<24) || hour24<2){
+    else if ((hour24>=22 && hour24<24) || hour24<2){
         //dark-nighttime-lovett-hall
         setBackgroundImage('Images/dark-nighttime-lovett-hall.jpg');
     }
