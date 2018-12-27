@@ -63,8 +63,8 @@ body,html{
 }
 
 .label-text{
-    /* font-family: Nunito-BoldItalic; */
-    font-family: Avenir-Black;
+    font-family: Nunito-Bold;
+    /* font-family: Avenir-Black; */
     font-style: italic;
 
     font-size: 24px;
@@ -98,8 +98,8 @@ body,html{
 #servery-title{
     letter-spacing: 3.5px;
     font-size: 24px;
-    /* font-family: Nunito-italics; */
-    font-family: Avenir-Medium;
+    font-family: Nunito-bold;
+    /* font-family: Avenir-Medium; */
     font-style: italic;
 
 }
@@ -134,41 +134,9 @@ p{
     font-family: DINAlternate-Bold; 
     src: url('Fonts/DINAlternate-Bold.ttf'); 
 }
-@font-face {
-    font-family: DINAlternate-Regular;
-    src: url('Fonts/DINAlternate-Regular.otf');
-}
-@font-face {
-    font-family: Alte-DIN;
-    src: url('Fonts/Alte-DIN.ttf');
-}
-@font-face {
-    font-family: Nunito-semi;
-    src: url('Fonts/Nunito/Nunito-SemiBold.ttf');
-}
-@font-face {
-    font-family: Nunito-semi-italics;
-    src: url('Fonts/Nunito/Nunito-SemiBoldItalic.ttf');
-}
-@font-face {
-    font-family: Nunito;
-    src: url('Fonts/Nunito/Nunito-Regular.ttf');
-}
-@font-face {
-    font-family: Nunito-italics;
-    src: url('Fonts/Nunito/Nunito-BoldItalic.ttf');
-}
-@font-face {
-    font-family: Nunito-Light;
-    src: url('Fonts/Nunito/Nunito-Light.ttf');
-}
-@font-face {
-    font-family: Nunito-ExtraLight;
-    src: url('Fonts/Nunito/Nunito-ExtraLight.ttf');
-}
 @font-face{
-    font-family: Nunito-BoldItalic;
-    src:url('Fonts/Nunito/Nunito-BoldItalic.ttf')
+    font-family: Nunito-Bold;
+    src:url('Fonts/Nunito/Nunito-Bold.ttf')
 }
 @font-face{
     font-family: Avenir-Roman;
