@@ -28,13 +28,13 @@ body,html{
 #all-labels{
     width: 200px;
     height: 426;
-    background-color: rgba(255, 255, 255, 0.95);
+    background-color: rgba(255, 255, 255, 0.88);
 }
 #information1{
     width: 510px;
     /* min-width: 468px; */
     height: 426;
-    background-color: rgba(255, 255, 255, 0.9);
+    background-color: rgba(255, 255, 255, 0.8);
 }
 #information2{
     padding-top: 10px;
@@ -57,13 +57,34 @@ body,html{
     font-family: Nunito;
     letter-spacing: 0px;
 }
-
-
 #credits{
     margin-top: 10px;
     font-size: 9px;
     color: #FFFFFF;
     text-align: center;
+}
+.side-buttons{
+    /* width: 200px; */
+    max-width: 90%;
+    height: 71px;
+    cursor: pointer;
+}
+.label-text{
+    font-family: Nunito-BoldItalic;
+    font-size: 26px;
+    color: #4A4A4A;
+    text-align: right;
+    letter-spacing: 4px;
+    padding-right: 10px;
+    max-width: 100%;
+    line-height: 71px;
+
+    /* display: flex;
+    align-items: center; */
+}
+
+button{
+
 }
 
 @font-face {
@@ -83,6 +104,10 @@ body,html{
     src: url('Fonts/Nunito/Nunito-SemiBold.ttf');
 }
 @font-face {
+    font-family: Nunito-semi-italics;
+    src: url('Fonts/Nunito/Nunito-SemiBoldItalic.ttf');
+}
+@font-face {
     font-family: Nunito;
     src: url('Fonts/Nunito/Nunito-Regular.ttf');
 }
@@ -97,6 +122,10 @@ body,html{
 @font-face {
     font-family: Nunito-ExtraLight;
     src: url('Fonts/Nunito/Nunito-ExtraLight.ttf');
+}
+@font-face{
+    font-family: Nunito-BoldItalic;
+    src:url('Fonts/Nunito/Nunito-BoldItalic.ttf')
 }
 
 /* html{
