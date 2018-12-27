@@ -44,7 +44,7 @@ function serveryUpdate(servery){
     setTimeDaytimeImage();
     //Set servery header and local storage equal to servName
     let servName = servery.getNameAllCaps();
-    if(servName == "SidRich"){
+    if(servName == "SIDRICH"){
         //Keep "SidRich" everywhere else, but I need to name the header "Sid Rich"
         $('#servery-name').text("SID RICH");
     }
@@ -248,11 +248,11 @@ function setTimeDaytimeImage(){
     //Set image
     if(hour24>=8 && hour24<12){
         //brochstein
-        setBackgroundImage('Images/brochstein.jpg');
+        setBackgroundImage('Images/moody.jpg');
     }
     else if(hour24>=12 && hour24 < 17){
         //front-entrance
-        setBackgroundImage('Images/front-entrance.jpg');
+        setBackgroundImage('Images/skyspace.jpg');
     }
     else if(hour24>=17 && hour24<21){
         //mild-nighttime
@@ -271,7 +271,6 @@ function setTimeDaytimeImage(){
         setBackgroundImage('Images/mild-nighttime.jpg');
         console.log("Error. The proper background image is not loading. Please email pm28@rice.edu with a screenshot and the time.");
     }
-    // setBackgroundImage('Images/dark-nighttime-lovett-hall.jpg');
 }
 function setBackgroundImage(imageUrl){
     $('#bg').css('background-image', 'url(' + imageUrl + ')');
