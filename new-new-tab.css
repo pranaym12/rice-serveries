@@ -6,7 +6,7 @@ body,html{
     overscroll-behavior: none; /*Likely only works in Chrome*/
 }
 .bg{
-    background-image: url('Images/brochstein.jpg');
+    background-image: url('Images/mild-nighttime.jpg');
     height: 100%;
     width: 100%;
     background-position: center ;
@@ -30,16 +30,18 @@ body,html{
 }
 #daytime{
     font-size: 60px;
-    font-family: Nunito-semi;
+    /* font-family: Nunito-Semi; */
+    font-family: Avenir-Medium;
 }
 #prompt{
     font-size: 24px;
-    font-family: Nunito-Light;
+    /* font-family: Nunito-Light; */
+    font-family: Avenir-Book;
 }
 #container{
     width: 710px;
-    /* height: 426px; */
-    height: 378px;
+    height: 426px;
+    /* height: 378px; */
     padding-top: 20px;
     display: flex;
     margin-left: auto;
@@ -61,11 +63,14 @@ body,html{
 }
 
 .label-text{
-    font-family: Nunito-BoldItalic;
-    font-size: 28px;
+    /* font-family: Nunito-BoldItalic; */
+    font-family: Avenir-Black;
+    font-style: italic;
+
+    font-size: 24px;
     height: 0px;
     color: #4A4A4A;
-    letter-spacing: 4.2px;
+    letter-spacing: 4px;
     position: absolute;
     right: 15%;
     line-height: 71px;
@@ -77,7 +82,7 @@ body,html{
     z-index: 1;
     margin-top: auto;
     position: absolute; 
-    bottom: 12.5%;
+    bottom: 22%;
 }
 #information1{
     width: 510px;
@@ -91,17 +96,24 @@ body,html{
     color: #4A4A4A;
 }
 #servery-title{
-    letter-spacing: 3px;
+    letter-spacing: 3.5px;
     font-size: 24px;
-    font-family: Nunito-italics;
+    /* font-family: Nunito-italics; */
+    font-family: Avenir-Medium;
+    font-style: italic;
+
 }
 #servery-message{
-    font-family: Nunito-Light;
+    /* font-family: Nunito-Light; */
+    font-family: Avenir-Book;
+    /* margin-top: 13px; */
+    margin-bottom: 15px;
     font-size: 18px;
 }
 #list-of-foods{
     font-size: 18px;
-    font-family: Nunito;
+    /* font-family: Nunito; */
+    font-family: Avenir-Roman;
     letter-spacing: 0px;
 }
 #credits{
@@ -157,6 +169,22 @@ p{
 @font-face{
     font-family: Nunito-BoldItalic;
     src:url('Fonts/Nunito/Nunito-BoldItalic.ttf')
+}
+@font-face{
+    font-family: Avenir-Roman;
+    src: url('Fonts/Avenir/Avenir-Roman.otf');
+}
+@font-face{
+    font-family: Avenir-Book;
+    src: url('Fonts/Avenir/Avenir-Book.otf');
+}
+@font-face{
+    font-family: Avenir-Black;
+    src: url('Fonts/Avenir/Avenir-Black.otf');
+}
+@font-face{
+    font-family: Avenir-Medium;
+    src: url('Fonts/Avenir/Avenir-Medium.otf');
 }
 
 /* html{
