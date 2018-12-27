@@ -41,7 +41,7 @@ function initialServeryUpdate(){
 }
 function serveryUpdate(servery){
     //set current time, and good-morning/afternoon, and image
-    setTimeDaytime();
+    setTimeDaytimeImage();
     //Set servery header and local storage equal to servName
     let servName = servery.getNameAllCaps();
     if(servName == "SidRich"){
@@ -67,7 +67,7 @@ function serveryUpdate(servery){
     timeNow = d.getTime();
 
     if(typeof localStorage["time"] == "undefined" || timeNow - localStorage["time"] > reloadMin*60000){
-        console.log("downloading");
+        console.log("updating from dining.rice.edu");
         var xhr = new XMLHttpRequest();
         xhr.open("GET", "http://dining.rice.edu/", true);
         xhr.overrideMimeType("text/html");
@@ -134,7 +134,7 @@ function serveryUpdate(servery){
         });
         
     }
-    console.log("----------------------------------------");
+    //console.log("----------------------------------------");
 
 };
 
@@ -199,9 +199,9 @@ function searchServeries(serveryStr, data){
     }
 }
 
-function setTimeDaytime(){
+function setTimeDaytimeImage(){
     /*
-    Outputs the current time as a string of the form 9:45AM
+    Set the current time
     */
     var d = new Date();
     let hour24 = d.getHours();
@@ -232,6 +232,7 @@ function setTimeDaytime(){
     timeStr = hour12.toString() + ":"+minString+" "+ampm;
     $('#time').text(timeStr);
 
+    //Set "good morning/afternoon/evening"
     var timeOfDay = "";
     if(hour24>=5 && hour24<12){
         timeOfDay = "Morning";
@@ -243,4 +244,35 @@ function setTimeDaytime(){
         timeOfDay = "Evening";
     }
     $('#daytime').text("Good "+timeOfDay);
+
+    //Set image
+    if(hour24>=8 && hour24<12){
+        //brochstein
+        setBackgroundImage('Images/brochstein.jpg');
+    }
+    else if(hour24>=12 && hour24 < 17){
+        //front-entrance
+        setBackgroundImage('Images/front-entrance.jpg');
+    }
+    else if(hour24>=17 && hour24<21){
+        //mild-nighttime
+        setBackgroundImage('Images/mild-nighttime.jpg');
+    }
+    else if ((hour24>=21 && hour24<24) || hour24<2){
+        //dark-nighttime-lovett-hall
+        setBackgroundImage('Images/dark-nighttime-lovett-hall.jpg');
+    }
+    else if(hour24>=2 && hour24 < 8){
+        // misty-halloween
+        setBackgroundImage('Images/misty-halloween.jpg');
+    }
+    else{
+        //mild-nighttime
+        setBackgroundImage('Images/mild-nighttime.jpg');
+        console.log("Error. The proper background image is not loading. Please email pm28@rice.edu with a screenshot and the time.");
+    }
+    // setBackgroundImage('Images/dark-nighttime-lovett-hall.jpg');
+}
+function setBackgroundImage(imageUrl){
+    $('#bg').css('background-image', 'url(' + imageUrl + ')');
 }
