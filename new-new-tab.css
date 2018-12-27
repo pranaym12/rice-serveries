@@ -6,7 +6,7 @@ body,html{
     overscroll-behavior: none; /*Likely only works in Chrome*/
 }
 .bg{
-    background-image: url('Images/mild-nighttime.jpg');
+    background-image: url('Images/brochstein.jpg');
     height: 100%;
     width: 100%;
     background-position: center ;
@@ -22,6 +22,11 @@ body,html{
     padding-top: 0vh; 
     font-size: 80px; 
     font-family: DINAlternate-Bold;
+    /* THIS IS WHAT YOU DO TO PUT IT ON TOP OF A GRAY BACKGROUND */
+    /* width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: rgba(128,128,128, 0.88); */
 }
 #daytime{
     font-size: 60px;
