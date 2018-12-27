@@ -40,11 +40,13 @@ function initialServeryUpdate(){
       });
 }
 function serveryUpdate(servery){
+    //set current time, and good-morning/afternoon, and image
+    setTimeDaytime();
     //Set servery header and local storage equal to servName
-    let servName = servery.name;
+    let servName = servery.getNameAllCaps();
     if(servName == "SidRich"){
         //Keep "SidRich" everywhere else, but I need to name the header "Sid Rich"
-        $('#servery-name').text("Sid Rich");
+        $('#servery-name').text("SID RICH");
     }
     else{
         $('#servery-name').text(servName);
@@ -63,7 +65,6 @@ function serveryUpdate(servery){
 
     var d = new Date();
     timeNow = d.getTime();
-    console.log(currentTime());
 
     if(typeof localStorage["time"] == "undefined" || timeNow - localStorage["time"] > reloadMin*60000){
         console.log("downloading");
@@ -198,25 +199,26 @@ function searchServeries(serveryStr, data){
     }
 }
 
-function currentTime(){
+function setTimeDaytime(){
     /*
     Outputs the current time as a string of the form 9:45AM
     */
     var d = new Date();
-    let hour = d.getHours();
+    let hour24 = d.getHours();
+    let hour12 = hour24;
     let minInt = d.getMinutes();
     let ampm = "";
-    if(hour < 12){
+    if(hour12 < 12){
         ampm = "AM";
-        if(hour == 0){
-            hour = 12;
+        if(hour12 == 0){
+            hour12 = 12;
         }
         ;
     }
     else{
         ampm = "PM";
-        if(hour > 12) {
-            hour -= 12;
+        if(hour12 > 12) {
+            hour12 -= 12;
         }
     }
     let minString = "";
@@ -226,5 +228,19 @@ function currentTime(){
     else{
         minString = minInt.toString();
     }
-    return hour.toString() + ":"+minString+" "+ampm;
+    // return hour.toString() + ":"+minString+" "+ampm;
+    timeStr = hour12.toString() + ":"+minString+" "+ampm;
+    $('#time').text(timeStr);
+
+    var timeOfDay = "";
+    if(hour24>=5 && hour24<12){
+        timeOfDay = "Morning";
+    }
+    else if(hour24>=12 && hour24<17){
+        timeOfDay = "Afternoon";
+    }
+    else{
+        timeOfDay = "Evening";
+    }
+    $('#daytime').text("Good "+timeOfDay);
 }
