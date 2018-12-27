@@ -23,7 +23,7 @@ body,html{
     font-size: 80px; 
     font-family: DINAlternate-Bold;
     /* THIS IS WHAT YOU DO TO PUT IT ON TOP OF A GRAY BACKGROUND */
-    /* width: 300px;
+    /* width: 450px;
     margin-left: auto;
     margin-right: auto;
     background-color: rgba(128,128,128, 0.88); */
@@ -78,11 +78,13 @@ body,html{
 }
 .colored-strip{
     height: 30%;
-    width: 95%;
+    width: 92.5%;
     z-index: 1;
     margin-top: auto;
     position: absolute; 
-    bottom: 22%;
+    /* bottom is 22 and height 28 when .label-text's font is Nunito; 
+    22 when it's Avenir-Black */
+    bottom: 19%;
 }
 #information1{
     width: 510px;

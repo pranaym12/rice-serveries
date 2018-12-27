@@ -28,6 +28,28 @@ $(function(){
     $('#West').click(function(){
         serveryUpdate(west);
     });
+    //Shortcuts to call each function: 1-6 or a-f keys
+    Mousetrap.bind('1', function(){serveryUpdate(baker);});
+    Mousetrap.bind('2', function(){serveryUpdate(north);});
+    Mousetrap.bind('3', function(){serveryUpdate(seibel);});
+    Mousetrap.bind('4', function(){serveryUpdate(sid);});
+    Mousetrap.bind('5', function(){serveryUpdate(south);});
+    Mousetrap.bind('6', function(){serveryUpdate(west);});
+
+    Mousetrap.bind('a', function(){serveryUpdate(baker);});
+    Mousetrap.bind('s', function(){serveryUpdate(north);});
+    Mousetrap.bind('d', function(){serveryUpdate(seibel);});
+    Mousetrap.bind('f', function(){serveryUpdate(sid);});
+    Mousetrap.bind('g', function(){serveryUpdate(south);});
+    Mousetrap.bind('h', function(){serveryUpdate(west);});
+
+    Mousetrap.bind('q', function(){serveryUpdate(baker);});
+    Mousetrap.bind('w', function(){serveryUpdate(north);});
+    Mousetrap.bind('e', function(){serveryUpdate(seibel);});
+    Mousetrap.bind('r', function(){serveryUpdate(sid);});
+    Mousetrap.bind('t', function(){serveryUpdate(south);});
+    Mousetrap.bind('y', function(){serveryUpdate(west);});
+    
 });
 function initialServeryUpdate(){
     chrome.storage.sync.get(['servery'], function(result) {
