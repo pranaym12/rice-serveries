@@ -65,13 +65,13 @@ function serveryUpdate(servery){
     //set current time, and good-morning/afternoon, and image
     setTimeDaytimeImage();
     //Set servery header and local storage equal to servName
-    let servName = servery.getNameAllCaps();
-    if(servName == "SIDRICH"){
+    let servName = servery.getName();
+    if(servName == "SidRich"){
         //Keep "SidRich" everywhere else, but I need to name the header "Sid Rich"
         $('#servery-name').text("SID RICH");
     }
     else{
-        $('#servery-name').text(servName);
+        $('#servery-name').text(servName.toUpperCase());
     }
     chrome.storage.sync.set({'servery': servery.getName()}, function(){});
 
