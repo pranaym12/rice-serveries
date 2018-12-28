@@ -6,8 +6,12 @@
     "chrome_url_overrides": {
         "newtab":"new-new-tab.html"
     },
+    "icons": { "16": "Icons/icon16.png",
+        "32":  "Icons/icon48.png",
+       "128": "Icons/icon128.png" },
     "browser_action": {
-		"default_popup": "popup.html"
+        "default_popup": "popup.html",
+        "default_icon": "icons/icon16.png"
 	},
     "permissions": [
         "http://dining.rice.edu/*",
