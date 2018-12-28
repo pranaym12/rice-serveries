@@ -1,6 +1,6 @@
 {
     "name": "Rice Serveries",
-    "version": "1.0.0.2",
+    "version": "1.0.0.3",
     "description": "Make it easier to see what's for lunch! Replace New Tab page with an easy-to-read dashboard of Rice University's servery menus.",
     "manifest_version": 2,
     "chrome_url_overrides": {

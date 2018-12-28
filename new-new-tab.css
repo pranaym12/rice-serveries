@@ -118,11 +118,14 @@ body,html{
     font-family: Avenir-Roman;
     letter-spacing: 0px;
 }
-#credits{
+#credits,a{
     margin-top: 5px;
     font-size: 9px;
     color: #FFFFFF;
     text-align: center;
+}
+a{
+    text-decoration: underline;
 }
 p{
     display: block;
