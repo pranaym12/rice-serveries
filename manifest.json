@@ -6,6 +6,9 @@
     "chrome_url_overrides": {
         "newtab":"new-new-tab.html"
     },
+    "browser_action": {
+		"default_popup": "popup.html"
+	},
     "permissions": [
         "http://dining.rice.edu/*",
         "storage"
