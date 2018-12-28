@@ -59,7 +59,7 @@ function initialServeryUpdate(){
         else{
             serveryUpdate(seibel);
         }
-      });
+    });
 }
 function serveryUpdate(servery){
     //set current time, and good-morning/afternoon, and image
@@ -157,7 +157,6 @@ function serveryUpdate(servery){
         
     }
     //console.log("----------------------------------------");
-
 };
 
 function generatePrompt(data, numServeriesWithFood){
@@ -173,7 +172,7 @@ function generatePrompt(data, numServeriesWithFood){
 
     //if serveries are closed from timing, OR no food on dining.rice
     if(allServeriesClosed() || numServeriesWithFood <= 0){
-        promptMessage += "All serveries are closed."
+        promptMessage += "All serveries are currently closed."
     }
     //if dining.rice shows at least one servery open, ADD "Your Lunch/Dinner Today:"
     let foodTodayMessage = data.querySelector(".col_4");
@@ -268,11 +267,12 @@ function setTimeDaytimeImage(){
     $('#daytime').text("Good "+timeOfDay);
 
     //Set image
+    
     if(hour24>=8 && hour24<14){
         //brochstein
         setBackgroundImage('Images/moody.jpg');
     }
-    else if(hour24>=14 && hour24 < 118){
+    else if(hour24>=14 && hour24 < 18){
         //front-entrance
         setBackgroundImage('Images/skyspace.jpg');
     }

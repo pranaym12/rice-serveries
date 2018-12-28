@@ -1,7 +1,7 @@
 {
     "name": "Rice Serveries",
-    "version": "1.0.0.0",
-    "description": "Build an Extension for Chrome!",
+    "version": "1.0.0.1",
+    "description": "Make it easier to see what's for lunch! Replace New Tab page with an easy-to-read dashboard of Rice University's servery menus.",
     "manifest_version": 2,
     "chrome_url_overrides": {
         "newtab":"new-new-tab.html"
@@ -10,8 +10,7 @@
         "32":  "Icons/icon48.png",
        "128": "Icons/icon128.png" },
     "browser_action": {
-        "default_popup": "popup.html",
-        "default_icon": "icons/icon16.png"
+        "default_popup": "popup.html"
 	},
     "permissions": [
         "http://dining.rice.edu/*",
