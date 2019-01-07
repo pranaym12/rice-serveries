@@ -122,12 +122,7 @@ function serveryUpdate(servery){
                     var foodString = ""; //foodList converted to string
                     if(serveriesDict[servName]){
                         var foodList = serveriesDict[servName]; //foods in array form
-                        for(var i=0; i<foodList.length; i++){
-                            //Capitalize the first letter of the string
-                            var foodCap = foodList[i].charAt(0).toUpperCase() + foodList[i].slice(1)
-                            foodString += "<p>"+foodCap + "</p>";
-                            //foodString += "<p>"+foodList[i] + "</p>";
-                        }
+                        foodString = capFirstLetter(foodList, foodString);
                     }
                     $('#list-of-foods').html(foodString);
                     //console.log(serveriesDict);
@@ -138,26 +133,29 @@ function serveryUpdate(servery){
         xhr.send()
 
         localStorage["time"] = timeNow;
-        //console.log(localStorage["time"]);
     }
-    else{ //console.log("not downloading");
+    else{ 
         let foodString = ""; //foodList converted to string
         chrome.storage.sync.get(['servery_menus'], function(result) {
-            // console.log(result.servery_menus);
             let serveriesDict = result.servery_menus;
-            //console.log(serveriesDict);
             if(serveriesDict[servName]){
                 var foodList = serveriesDict[servName]; //foods in array form
-                for(var i=0; i<foodList.length; i++){
-                    foodString += "<p>"+foodList[i] + "</p>";
-                }
+                foodString = capFirstLetter(foodList, foodString);
             }
             $('#list-of-foods').html(foodString);
         });
         
     }
-    //console.log("----------------------------------------");
 };
+function capFirstLetter(foodList, foodString){
+    for(var i=0; i<foodList.length; i++){
+        //Capitalize the first letter of the string
+        var foodCap = foodList[i].charAt(0).toUpperCase() + foodList[i].slice(1)
+        foodString += "<p>"+foodCap + "</p>";
+        //foodString += "<p>"+foodList[i] + "</p>";
+    }
+    return foodString;
+}
 
 function generatePrompt(data, numServeriesWithFood){
 
