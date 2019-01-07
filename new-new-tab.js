@@ -165,7 +165,7 @@ function generatePrompt(data, numServeriesWithFood){
     // console.log(!baker.isOpen()[0] && !sid.isOpen()[0] && !south.isOpen()[0] && !west.isOpen()[0] 
     // && !north.isOpen()[0] && !seibel.isOpen()[0]);
     if(!allServeriesClosed() && numServeriesWithFood > 0 ){
-        promptMessage = "What would you like to eat today?";
+        promptMessage = "What would you like to eat today? ";
     }
 
     //if serveries are closed from timing, OR no food on dining.rice
