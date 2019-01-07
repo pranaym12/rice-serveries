@@ -61,6 +61,7 @@ class Servery {
 
         
         //EDIT BELOW BASED ON WHEN IT IS
+        /* //The week before Spring semester 2019
         if(year == 2019 && month == 0 ){
             //january 2019
             if(date < 6 && day > 1){ //before Jan 6, but after Sunday
@@ -81,7 +82,7 @@ class Servery {
                     times[0][1] = null; //no lunch on Jan 6
                 }            
             }
-        };
+        };*/
         return times
     }
 
