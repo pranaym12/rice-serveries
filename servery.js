@@ -109,7 +109,7 @@ class Servery {
                 return [true, "Breakfast"];
             }
             
-            else if(hourMin >= this.times[day][1][0] && hourMin <= this.times[day][1][1]){
+            else if(this.times[day][1] && hourMin >= this.times[day][1][0] && hourMin <= this.times[day][1][1]){
                 return [true, "Lunch"];
             }
             else if(this.times[day][2] &&  this.times[day][2][0] && hourMin >= this.times[day][2][0] && hourMin <= this.times[day][2][1]){

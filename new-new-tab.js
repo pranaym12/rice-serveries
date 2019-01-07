@@ -172,7 +172,7 @@ function generatePrompt(data, numServeriesWithFood){
 
     //if serveries are closed from timing, OR no food on dining.rice
     if(allServeriesClosed() || numServeriesWithFood <= 0){
-        promptMessage += "All serveries are currently closed."
+        promptMessage += "All serveries are currently closed. "
     }
     //if dining.rice shows at least one servery open, ADD "Your Lunch/Dinner Today:"
     let foodTodayMessage = data.querySelector(".col_4");
@@ -183,7 +183,7 @@ function generatePrompt(data, numServeriesWithFood){
             if(foodTodayString.includes("Your") && foodTodayString.includes("Today:")){
                 //original message says "Your Lunch Today:" or "Your Dinner Today:"
                 //set whichMeal equal to "Lunch" or "Dinner";
-                promptMeal += foodTodayString.slice(
+                promptMessage += foodTodayString.slice(
                     foodTodayString.indexOf("Your"),
                     foodTodayString.indexOf("Today:")+6);
                 //promptMessage += "Your " + whichMeal + " Today:";
