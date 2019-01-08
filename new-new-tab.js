@@ -124,6 +124,9 @@ function serveryUpdate(servery){
                         var foodList = serveriesDict[servName]; //foods in array form
                         foodString = capFirstLetter(foodList, foodString);
                     }
+                    if(foodString == ""){
+                        foodString = "The menu is not yet available.";
+                    }
                     $('#list-of-foods').html(foodString);
                     //console.log(serveriesDict);
                 });
@@ -141,6 +144,10 @@ function serveryUpdate(servery){
             if(serveriesDict[servName]){
                 var foodList = serveriesDict[servName]; //foods in array form
                 foodString = capFirstLetter(foodList, foodString);
+            }
+            
+            if(foodString == ""){
+                foodString = "The menu is not yet available.";
             }
             $('#list-of-foods').html(foodString);
         });
