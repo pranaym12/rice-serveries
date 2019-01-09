@@ -78,10 +78,14 @@ function serveryUpdate(servery){
     //set prompt in HTML equal to promptMessage in chrome storage
     //(later, if program downloads, set HTML again to new promptMessage)
     var promptMessage = "";
-    chrome.storage.sync.get(['prompt'], function(result){
-        //console.log("chrome storage of prompt: " + result.prompt);
+    var whichMealMessage = "";
+    chrome.storage.sync.get(['prompt', 'meal'], function(result){
+        //console.log("chrome storage of meal: " + result.meal);
         promptMessage = result.prompt;
         $('#prompt').text(promptMessage);
+        whichMealMessage = result.meal;
+        $('#which-meal').text(whichMealMessage);
+
     })
     $('#servery-message').text(servery.serveryMessage());
 
@@ -116,9 +120,12 @@ function serveryUpdate(servery){
                 //update with new promptMessage in hHML, and save in Chrome Storage
                 promptMessage = generatePrompt(data, numServeriesWithFood);
                 $('#prompt').text(promptMessage);
+                var whichMeal = genWhichMeal(data, numServeriesWithFood);
+                $('#which-meal').text(whichMeal);
                 //save promptMessage and serveriesDict in chrome storage
                 
-                chrome.storage.sync.set({'servery_menus': serveriesDict, prompt: promptMessage}, function() {
+                chrome.storage.sync.set({'servery_menus': serveriesDict, prompt: promptMessage,
+                                        meal: whichMeal}, function() {
                     var foodString = ""; //foodList converted to string
                     if(serveriesDict[servName]){
                         var foodList = serveriesDict[servName]; //foods in array form
@@ -164,6 +171,32 @@ function capFirstLetter(foodList, foodString){
     return foodString;
 }
 
+function genWhichMeal(data, numServeriesWithFood){
+    //if dining.rice shows at least one servery open, ADD "Your Lunch/Dinner Today:"
+    let foodTodayMessage = data.querySelector(".col_4");
+    var whichMeal = "";
+    if(numServeriesWithFood > 0){
+        if(foodTodayMessage){
+            foodTodayString = foodTodayMessage.innerHTML
+            // let whichMeal = "";
+            if(foodTodayString.includes("Your") && foodTodayString.includes("Today:")){
+                //original message says "Your Lunch Today:" or "Your Dinner Today:"
+                //set whichMeal equal to "Lunch" or "Dinner";
+                whichMeal += ": ";
+                var mealRegularCase = foodTodayString.slice(
+                    foodTodayString.indexOf("Your")+5,
+                    foodTodayString.indexOf("Today:")-2);
+                whichMeal += mealRegularCase.toUpperCase();
+                console.log(whichMeal);
+                //('#which-meal').text(whichMeal);
+                //promptMessage += "Your " + whichMeal + " Today:";
+            }
+        }
+    }
+    return whichMeal;
+    
+}
+
 function generatePrompt(data, numServeriesWithFood){
 
     let promptMessage = "";
@@ -178,22 +211,6 @@ function generatePrompt(data, numServeriesWithFood){
     //if serveries are closed from timing, OR no food on dining.rice
     if(allServeriesClosed() || numServeriesWithFood <= 0){
         promptMessage += "All serveries are currently closed. "
-    }
-    //if dining.rice shows at least one servery open, ADD "Your Lunch/Dinner Today:"
-    let foodTodayMessage = data.querySelector(".col_4");
-    if(numServeriesWithFood > 0){
-        if(foodTodayMessage){
-            foodTodayString = foodTodayMessage.innerHTML
-            // let whichMeal = "";
-            if(foodTodayString.includes("Your") && foodTodayString.includes("Today:")){
-                //original message says "Your Lunch Today:" or "Your Dinner Today:"
-                //set whichMeal equal to "Lunch" or "Dinner";
-                promptMessage += foodTodayString.slice(
-                    foodTodayString.indexOf("Your"),
-                    foodTodayString.indexOf("Today:")+6);
-                //promptMessage += "Your " + whichMeal + " Today:";
-            }
-        }
     }
 
     //console.log("Number serveries open: " + numServeriesWithFood);
