@@ -19,9 +19,12 @@ body,html{
     color: #ffffff;
 }
 #time{
+    height: 85px;
     padding-top: 0vh; 
     font-size: 80px; 
-    font-family: DINAlternate-Bold;
+    /* font-family: DINAlternate-Bold; */
+    font-family: Avenir-Medium;
+
     /* THIS IS WHAT YOU DO TO PUT IT ON TOP OF A GRAY BACKGROUND */
     /* width: 450px;
     margin-left: auto;
