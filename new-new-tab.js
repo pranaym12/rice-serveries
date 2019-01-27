@@ -132,7 +132,7 @@ function serveryUpdate(servery){
                         foodString = capFirstLetter(foodList, foodString);
                     }
                     if(foodString == ""){
-                        foodString = "The menu is not yet available.";
+                        foodString = "There is no menu available yet on dining.rice.edu.";
                     }
                     $('#list-of-foods').html(foodString);
                     //console.log(serveriesDict);
@@ -193,6 +193,7 @@ function genWhichMeal(data, numServeriesWithFood){
             }
         }
     }
+    //return ": Dinner" or ": Lunch"
     return whichMeal;
     
 }
