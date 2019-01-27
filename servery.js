@@ -29,7 +29,7 @@ class Servery {
         this.times.push([avgB.slice(), avgL.slice(), avgD.slice()]);//thurs
         //friday
         if(this.dayDict["Friday"]){
-            this.times.push([avgB.slice(), avgL.slice(), [17, 19]]);
+            this.times.push([avgB.slice(), avgL.slice(), [17.5, 19]]);
         }
         else{
             this.times.push([ avgB.slice(),avgL.slice(), null]);
