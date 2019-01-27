@@ -6,6 +6,7 @@ const north = new Servery("North", {"Friday": true, "Saturday": true, "Sunday": 
 const seibel = new Servery("Seibel", {"Friday": true, "Saturday": true, "Sunday": true })
 var reloadMin = 5 //number of minutes to wait between reloads
 var allServeries = {Baker:baker, SidRich: sid, South: south, West: west, North: north, Seibel: seibel};
+var noFoodMessage = "There is no menu available yet on dining.rice.edu."
 
 $(function(){
     // serveryUpdate(baker);
@@ -132,7 +133,7 @@ function serveryUpdate(servery){
                         foodString = capFirstLetter(foodList, foodString);
                     }
                     if(foodString == ""){
-                        foodString = "There is no menu available yet on dining.rice.edu.";
+                        foodString = noFoodMessage;
                     }
                     $('#list-of-foods').html(foodString);
                     //console.log(serveriesDict);
@@ -154,7 +155,7 @@ function serveryUpdate(servery){
             }
             
             if(foodString == ""){
-                foodString = "The menu is not yet available.";
+                foodString = noFoodMessage;
             }
             $('#list-of-foods').html(foodString);
         });
