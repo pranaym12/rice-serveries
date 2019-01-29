@@ -107,7 +107,7 @@ function serveryUpdate(servery){
 
                 serveriesStr = ["Baker", "Seibel", "SidRich", "North", "South", "West"];
                 serveriesLength = serveriesStr.length;
-                let serveriesDict = {}
+                let serveriesDict = {};
                 var numServeriesWithFood = 0; //track # serv displaying food
 
                 for (var i = 0; i < serveriesLength; i++) {
@@ -128,14 +128,18 @@ function serveryUpdate(servery){
                 chrome.storage.sync.set({'servery_menus': serveriesDict, prompt: promptMessage,
                                         meal: whichMeal}, function() {
                     var foodString = ""; //foodList converted to string
+                    var foodList = [];
                     if(serveriesDict[servName]){
-                        var foodList = serveriesDict[servName]; //foods in array form
-                        foodString = capFirstLetter(foodList, foodString);
+                        foodList = serveriesDict[servName]; //foods in array form
+                        foodString = capFirstLetter(foodList, foodString, servName);
                     }
                     if(foodString == ""){
                         foodString = noFoodMessage;
                     }
                     $('#list-of-foods').html(foodString);
+                    if (foodList.length > 0) {
+                        displayAllergens(foodList, servName);
+                    }
                     //console.log(serveriesDict);
                 });
 
@@ -147,26 +151,46 @@ function serveryUpdate(servery){
     }
     else{ 
         let foodString = ""; //foodList converted to string
+        var foodList = [];
         chrome.storage.sync.get(['servery_menus'], function(result) {
             let serveriesDict = result.servery_menus;
             if(serveriesDict[servName]){
-                var foodList = serveriesDict[servName]; //foods in array form
-                foodString = capFirstLetter(foodList, foodString);
+                foodList = serveriesDict[servName]; //foods in array form
+                foodString = capFirstLetter(foodList, foodString, servName);
             }
             
             if(foodString == ""){
                 foodString = noFoodMessage;
             }
             $('#list-of-foods').html(foodString);
+            if (foodList.length > 0) {
+                displayAllergens(foodList, servName);
+            }
+
+
         });
         
     }
 };
-function capFirstLetter(foodList, foodString){
+function displayAllergens(foodList, servName){
+    for (var i = 0; i < foodList.length; i++) {
+        if (foodList[i].allergens.length > 0) {
+            $("#"+servName+"-"+i).hover(function(e) {
+                var hoverElementID = e.target.id;
+                var idx = hoverElementID.charAt(hoverElementID.length - 1);
+                $(this).append( $( "<span> ("+foodList[idx].allergens+")</span>" ) );
+            }, function() {
+                $(this).find( "span:last" ).remove();
+            });
+        }
+    }
+
+}
+function capFirstLetter(foodList, foodString, servName){
     for(var i=0; i<foodList.length; i++){
         //Capitalize the first letter of the string
-        var foodCap = foodList[i].charAt(0).toUpperCase() + foodList[i].slice(1)
-        foodString += "<p>"+foodCap + "</p>";
+        var foodCap = foodList[i].food.charAt(0).toUpperCase() + foodList[i].food.slice(1)
+        foodString += "<p id="+servName+"-"+i+">"+foodCap + "</p>";
         //foodString += "<p>"+foodList[i] + "</p>";
     }
     return foodString;
@@ -235,7 +259,12 @@ function searchServeries(serveryStr, data){
         let divItems = food.querySelectorAll("div.menu-item");
         foodArray = []
         for (let item of divItems) {
-            foodArray.push(item.textContent);
+            let allergenList = item.previousElementSibling;
+            let allergens = [];
+            for (let allergen of allergenList.children) {
+                allergens.push(allergen.getAttribute("title"));
+            }
+            foodArray.push({"food": item.textContent, "allergens": allergens});
         }
         return foodArray;
         
